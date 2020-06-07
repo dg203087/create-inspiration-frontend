@@ -5,41 +5,48 @@ const nounsURL = `${baseURL}/nouns`
 const adjectivesURL = `${baseURL}/adjectives`
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchTemplates()
+    fetchRandomTemplate()
     // getQuoteInfo()
+    const addWordsForm = document.querySelector('#add-words-form')
+    addWordsForm.addEventListener('submit', (e) => createFormHandler(e)) //create event handler to make sure page doesn't refresh
+
 })
 
-function fetchTemplates() {
+// FETCH RANDOM TEMPLATE 
+function fetchRandomTemplate() {
     fetch(templatesURL)
     .then(resp => resp.json())
     .then(templates => {
-        for (const template of templates){
-            renderRandomTemplate(template)
-        }
+        let randomTemplateId = templates[Math.floor(Math.random() * templates.length)]
+        let randomTemplateContent = randomTemplateId.content
+        // renderTemplate(randomTemplateContent) 
+        const currentTemplate = `
+        <div data-id=${randomTemplateId.id}> 
+        <h3>${randomTemplateContent}</h3>
+        <button>Submit</button>
+        `
+        document.querySelector('.template-container').innerHTML += currentTemplate
     })
 }
 
-// RENDERS RANDOM TEMPLATE 
-function renderRandomTemplate(template) {
-    //make quote box
-    // const quoteBox = document.createElement('div')
-    // quoteBox.classList += "quoteBox" 
-    // quoteBox.dataset["id"] = template.id 
-
-    let randomTemplate = selectRandom(template)
-    console.log(randomTemplate)
-    // let quote = data.content
-    // let templateId = template.id
-    // console.log(quote)
-
-    // form.innerHTML = replaceText(quote, data)
-    // formHandler(quote, templateId)
+function createFormHandler(e) { //grabbing all input values
+    e.preventDefault()
+    
 }
 
-// RANDOMIZER
-function selectRandom(data) {
-    return data[Math.floor(Math.random() * data.length)];
-}
+
+// RENDER TEMPLATE REFACTOR 
+// function renderTemplate(template) {
+//     const currentTemplate = document.createElement('div')
+//     currentTemplate.classList += "template" 
+//     currentTemplate.dataset["id"] = template.id 
+
+//     document.querySelector('#template-container').innerHTML += currentTemplate
+
+//     form.innerHTML = replaceText(quote, data)
+//     formHandler(quote, templateId)
+// }
+
 
 
 
