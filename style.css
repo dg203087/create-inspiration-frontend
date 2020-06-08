@@ -1,0 +1,22 @@
+/* h2 {
+    color: #D3D3D3;
+  } */
+  
+
+  footer {
+    background-color: #434c4f;
+    color:#f5c242;
+    font-size: 14px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+
+
+footer a {
+    color:#f59642;
+    text-decoration: none;
+}
