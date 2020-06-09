@@ -3,7 +3,26 @@
   } */
   
 
-  footer {
+.template-container {
+  position: relative;
+  text-align: center;
+  font: cursive;
+}
+
+.centered {
+  /* top: 50%;
+  left: 50%; */
+  position: absolute;
+  /* bottom: 20px;
+  right: 20px;
+  left: 20px; */
+  top: 30px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+footer {
     background-color: #434c4f;
     color:#f5c242;
     font-size: 14px;
@@ -13,7 +32,6 @@
     text-align: center;
     z-index: 999;
 }
-
 
 
 footer a {
