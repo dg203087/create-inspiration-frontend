@@ -4,49 +4,70 @@
   <head>
     <meta charset="utf-8">
     <title>Make Inspiration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
+    <link rel="stylesheet" href="style.css">   
     <script type="text/javascript" src="index.js"></script>
   </head>
 
   <body>
-   
-    <h1 class="title">
-      Make Inspiration
-    </h1> 
-   
-    <h2 class="sub-title">
-      Create your own inspirational quotes!
-    </h2> 
-
-    <div class="form-container">
-
-      <form id="add-words-form" style="">
-        <h3>Add some WORDS of wisdom.</h3>
-
-        <input id='input-noun' type="text" name="noun" value="" placeholder="Enter a noun:" class="input-text">
-        <br><br>
-        <input id='input-verb' type="text" name="verb" value="" placeholder="Enter a verb:" class="input-text">
-        <br><br>
-        <input id='input-adjective' type="text" name="adjective" value="" placeholder="Enter an adjective:" class="input-text">
-        <br><br>
-
-        <p>Choose A Photo: </p>
- 
-        <br><br>
-
-        <input id= 'create-button' type="submit" name="submit" value="Create Inspiration" class="submit">
-      </form>
-
+    <div class="w3-display-container" style="margin-bottom:50px">
+      <img src="https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" style="width:100%">
+      <div class="w3-display-bottomleft w3-container w3-amber w3-hide-small"
+        style="bottom:10%;opacity:0.7;width:40%">
+        <h2><b>Make Inspiration</h2>
+      </div>
     </div>
+   
+    <div class="w3-row w3-container" style="margin:50px 0">
+      <div class="w3-half w3-container">
+        <div class="w3-topbar w3-border-amber">
+          <h2>Create your own inspirational quotes!</h2>
 
-    <br><br>
+          <div class="form-container">
 
-    <div class="template-container">
+            <form id="add-words-form" style="">
+              <p>Add some WORDS of wisdom.</p>
+      
+              <input id='input-noun' type="text" name="noun" value="" placeholder="Enter a noun:" class="input-text">
+              <br><br>
+              <input id='input-verb' type="text" name="verb" value="" placeholder="Enter a verb:" class="input-text">
+              <br><br>
+              <input id='input-adjective' type="text" name="adjective" value="" placeholder="Enter an adjective:" class="input-text">
+              <br><br>
+      
+              <input id= 'create-button' type="submit" name="submit" value="Create Inspiration" class="submit">
+            </form>
+            
+            <div class="test-container">
+              
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+      
+      <div class="w3-half w3-container">
+        <div class="w3-topbar w3-border-amber">
+          <br>
+          <div class="template-container">
 
     
+          </div>
+          <input id= 'index-button' type="button" value="View More Inspirational Quotes" class="index-button">
+          <br><br>
+          <input id= 'post-button' type="button" value="Inspire Others: Post Your Quote!" class="post-button">
+          <br><br>
+          <input id= 'refresh-button' type="reset" value="Try Again!" class="reset">
+      
+        </div>
+      </div>
     </div>
 
     <footer>
-      
+        Created by <a target="_blank" href="https://github.com/dg203087">Deanna Kelley</a><br>
+        Template by <a target="_blank" href="https://www.w3schools.com/w3css/w3css_templates.asp">w3schools</a>
     </footer>
   </body>
 
