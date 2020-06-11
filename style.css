@@ -1,12 +1,6 @@
-/* h2 {
-    color: #D3D3D3;
-  } */
-  
-
 .template-container {
   position: relative;
   text-align: center;
-  font: cursive;
 }
 
 .centered {
@@ -18,6 +12,7 @@
   left: 20px; */
   top: 30px;
   color: white;
+  font: cursive;
   padding-left: 20px;
   padding-right: 20px;
 }
