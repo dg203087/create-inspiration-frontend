@@ -12,7 +12,7 @@
 
   <body>
     <div class="w3-display-container" style="margin-bottom:50px">
-      <img src="https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" style="width:100%">
+      <img src="https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" style="width:100%", height="350">
       <div class="w3-display-bottomleft w3-container w3-amber w3-hide-small"
         style="bottom:10%;opacity:0.7;width:40%">
         <h2><b>Make Inspiration</h2>
@@ -36,14 +36,8 @@
               <input id='input-adjective' type="text" name="adjective" value="" placeholder="Enter an adjective:" class="input-text">
               <br><br>
       
-              <input id= 'create-button' type="submit" name="submit" value="Create Inspiration" class="submit">
+              <input id= 'create-button' type="submit" name="submit" value="Create Inspiration" class="button">
             </form>
-            
-            <div class="test-container">
-              
-            </div>
-
-
           </div>
         </div>
       </div>
@@ -53,17 +47,33 @@
           <br>
           <div class="template-container">
 
-    
           </div>
-          <input id= 'index-button' type="button" value="View More Inspirational Quotes" class="index-button">
+          
           <br><br>
-          <input id= 'post-button' type="button" value="Inspire Others: Post Your Quote!" class="post-button">
+          <div class = "post-button">
+            <input id='post-button' type="button" value="Inspire Others: Post Your Quote!" class="button">
+          </div>
           <br><br>
-          <input id= 'refresh-button' type="reset" value="Try Again!" class="reset">
-      
+          <div class = refresh-button>
+            <input id='refresh-button' type="reset" value="Try Again!" class="button">
+          </div>
+          <br><br>
+          <div class = index-button>
+            <input id="index-button" type="button" value="View More Inspirational Quotes" class="button">
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="w3-container">
+      <div class="w3-topbar w3-border-amber">
+        <h2>Other Inspiration</h2>
+        <div class="index-container">
+              
+        </div>
+      </div>
+    </div>
+
 
     <footer>
         Created by <a target="_blank" href="https://github.com/dg203087">Deanna Kelley</a><br>
