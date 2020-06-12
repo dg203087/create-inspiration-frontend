@@ -1,6 +1,7 @@
 .template-container {
   position: relative;
   text-align: center;
+  /* filter: blur(10px); */
 }
 
 .centered {
@@ -51,4 +52,8 @@ footer {
 footer a {
     color:#f59642;
     text-decoration: none;
+}
+
+.blur-me {
+  filter: blur(20px);
 }
