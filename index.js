@@ -18,20 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const addWordsForm = document.querySelector('#add-words-form')
     addWordsForm.addEventListener('submit', (e) => createFormHandler(e)) //create event handler to make sure page doesn't refresh
 
-    indexBtn = document.querySelector("#index-button")
-    indexBtn.addEventListener("click", function() {
-      // console.log("this button works")
-      const indexContainer = document.querySelector("#w3-container")
-    })
-
-
-    clearBtn = document.querySelector("#refresh-button")
-    clearBtn.addEventListener("click", function() {
-      // debugger
-      // const container = document.querySelector("#template-container")
-      // const destroy = container => {
-      //   document.getElementById(container).innerHTML = ''
-      // }
+    clearBtn = document.querySelector("#clear-button")
+    clearBtn.addEventListener("click", function(){
+      document.getElementById('add-words-form').reset()
+      const container = document.querySelector(".template-container")
+      container.innerHTML = ''
+      fetchRandomTemplate()
     })
 
     postBtn = document.querySelector("#post-button")
