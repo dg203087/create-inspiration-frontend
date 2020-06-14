@@ -1,6 +1,5 @@
 const baseURL = 'http://localhost:3000/api/v1'
 const quotesURL = `${baseURL}/quotes`
-const nounsURL = `${baseURL}/nouns`
 const templatesURL = `${baseURL}/templates`
 let indexBtn 
 let clearBtn
@@ -11,13 +10,15 @@ let quoteArray
 let newAdj
 let newNoun
 let newVerb
-// let indexContainer
+let newQuote
 
+//load form and random template 
 document.addEventListener('DOMContentLoaded', () => {
     fetchRandomTemplate()
     const addWordsForm = document.querySelector('#add-words-form')
     addWordsForm.addEventListener('submit', (e) => createFormHandler(e)) //create event handler to make sure page doesn't refresh
 
+//clear button
     clearBtn = document.querySelector("#clear-button")
     clearBtn.addEventListener("click", function(){
       document.getElementById('add-words-form').reset()
@@ -26,17 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchRandomTemplate()
     })
 
+//post quote
     postBtn = document.querySelector("#post-button")
     postBtn.addEventListener("click", function() {
-      console.log("this button works")
-      // document.querySelector("#w3-container").innerHTML = "Hello World"
-      // fetch(quotesURL) 
-      //   .then(res => res.json())
-      //   .then(data => {
-      //     console.log(data)
-      // });
-      //   })
-    })
+        const indexPost = `
+        <div data-id=${quoteID}> 
+          <img src=${randomTemplateId.image_url} height="350", width="100%">
+          <div class="bottom-centered"><h3>${newQuote}</h3></div>
+        </div>
+        `
+        document.querySelector(".index-container").innerHTML += indexPost
+      })
 })
 
 // function fetchQuotes(){
@@ -44,18 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
 //   indexContainer.innerHTML = "Hello World"
 // }
 
-
-function createFormHandler(e) { //grabbing all input values 
+//receive form input values
+function createFormHandler(e) {
   e.preventDefault()
   const nounInput = document.querySelector('#input-noun').value
   const verbInput = document.querySelector('#input-verb').value
   const adjectiveInput = document.querySelector('#input-adjective').value
 
-  // fetchRandomTemplate()
   quoteID = quoteID
   updateQuote(quoteID, nounInput, verbInput, adjectiveInput) 
 }
 
+//creates quote with submitted words
 function updateQuote(quoteID, noun, verb, adjective) {
    // const quoteData = {quoteID} //{id: quoteID}
   const adjData = adjective //{adj_word: adjective}
@@ -67,7 +68,7 @@ function updateQuote(quoteID, noun, verb, adjective) {
   const nounFind = (quoteArray.match(new RegExp("NOUN", 'g')))
   const adjectiveFind = (quoteArray.match(new RegExp("ADJECTIVE", 'g')))
 
-  let newQuote = quoteArray
+  newQuote = quoteArray
 
   newQuote = newQuote.replace(nounFind, nounData)
   newQuote = newQuote.replace(adjectiveFind, adjData);
@@ -79,31 +80,32 @@ function updateQuote(quoteID, noun, verb, adjective) {
   </div>
   `
   document.querySelector('.centered').innerHTML += newTemplate
+ 
   // postTemplate(newQuote)
   // postQuote(newQuote, quoteID)
 }
 
 // function postQuote(newQuote, quoteID) {
 
-  // let newContent = newQuote
-  // fetch(`${quotesURL}/${quoteID}`, {
-  //   method: "PATCH",
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Accept': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     template: newContent
-  //   })
-  // })
-  //   .then(response => response.json())
-  //   .then(updatedQuote => {
-  //     console.log(updatedQuote)
-  //   })
+//   let newContent = newQuote
+//   fetch(`${quotesURL}/${quoteID}`, {
+//     method: "PATCH",
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Accept': 'application/json',
+//     },
+//     body: JSON.stringify({
+//       template: newContent
+//     })
+//   })
+//     .then(response => response.json())
+//     .then(updatedQuote => {
+//       console.log(updatedQuote)
+//     })
 // }
 
 
-// FETCH RANDOM TEMPLATE 
+// fetch random template
 function fetchRandomTemplate() {
   fetch(templatesURL)
   .then(resp => resp.json())
@@ -123,20 +125,19 @@ function fetchRandomTemplate() {
   })
 }
 
-// POSTS TEMPLATE TO QUOTE
+// posts template to quote
 function postTemplate(tempID) {
-const templateData = {template_id: tempID.id}
-
-fetch(quotesURL, {
-  method: "POST",
-  headers: {"Content-Type": "application/json"}, 
-  body: JSON.stringify(templateData)
-})
-.then(response => response.json())
-.then(quote => {
-  console.log(quote)
-  quoteID = quote.id
-  quoteArray = quote
-})
+  const templateData = {template_id: tempID.id}
+  fetch(quotesURL, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"}, 
+    body: JSON.stringify(templateData)
+  })
+  .then(response => response.json())
+  .then(quote => {
+    console.log(quote)
+    quoteID = quote.id
+    quoteArray = quote
+  })
 }
 
