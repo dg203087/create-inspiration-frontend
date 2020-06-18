@@ -30,80 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
 //post quote
     postBtn = document.querySelector("#post-button")
     postBtn.addEventListener("click", function() {
-        const indexPost = `
-        <div data-id=${quoteID}> 
-          <img src=${randomTemplateId.image_url} height="350", width="100%">
-          <div class="bottom-centered"><h3>${newQuote}</h3></div>
-        </div>
-        `
-        document.querySelector(".index-container").innerHTML += indexPost
+      newAdj = adjData
+      newNoun = nounData
+      newVerb = verbData
+        
+      postQuote(quoteID, newQuote, newAdj, newNoun, newVerb)
       })
 })
-
-// function fetchQuotes(){
-//   let indexContainer = document.querySelector("#w3-container")
-//   indexContainer.innerHTML = "Hello World"
-// }
-
-//receive form input values
-function createFormHandler(e) {
-  e.preventDefault()
-  const nounInput = document.querySelector('#input-noun').value
-  const verbInput = document.querySelector('#input-verb').value
-  const adjectiveInput = document.querySelector('#input-adjective').value
-
-  quoteID = quoteID
-  updateQuote(quoteID, nounInput, verbInput, adjectiveInput) 
-}
-
-//creates quote with submitted words
-function updateQuote(quoteID, noun, verb, adjective) {
-   // const quoteData = {quoteID} //{id: quoteID}
-  const adjData = adjective //{adj_word: adjective}
-  const nounData = noun//{noun_word: noun}  //build noun object
-  const verbData = verb //{verb_word: verb}
-  quoteArray = quoteArray.template.content
-  
-  const verbFind = (quoteArray.match(new RegExp("VERB", 'g')))
-  const nounFind = (quoteArray.match(new RegExp("NOUN", 'g')))
-  const adjectiveFind = (quoteArray.match(new RegExp("ADJECTIVE", 'g')))
-
-  newQuote = quoteArray
-
-  newQuote = newQuote.replace(nounFind, nounData)
-  newQuote = newQuote.replace(adjectiveFind, adjData);
-  newQuote = newQuote.replace(verbFind, verbData);
-  console.log(newQuote)
-  
-  const newTemplate = `
-    <div class="centered"><h3>${newQuote}</h3></div>
-  </div>
-  `
-  document.querySelector('.centered').innerHTML += newTemplate
- 
-  // postTemplate(newQuote)
-  // postQuote(newQuote, quoteID)
-}
-
-// function postQuote(newQuote, quoteID) {
-
-//   let newContent = newQuote
-//   fetch(`${quotesURL}/${quoteID}`, {
-//     method: "PATCH",
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       template: newContent
-//     })
-//   })
-//     .then(response => response.json())
-//     .then(updatedQuote => {
-//       console.log(updatedQuote)
-//     })
-// }
-
 
 // fetch random template
 function fetchRandomTemplate() {
@@ -140,4 +73,71 @@ function postTemplate(tempID) {
     quoteArray = quote
   })
 }
+
+//receive form input values
+function createFormHandler(e) {
+  e.preventDefault()
+  const nounInput = document.querySelector('#input-noun').value
+  const verbInput = document.querySelector('#input-verb').value
+  const adjectiveInput = document.querySelector('#input-adjective').value
+
+  quoteID = quoteID
+  updateQuote(quoteID, nounInput, verbInput, adjectiveInput) 
+}
+
+//creates quote with submitted words
+function updateQuote(quoteID, noun, verb, adjective) {
+   // const quoteData = {quoteID} //{id: quoteID}
+  const adjData = adjective //{adj_word: adjective}
+  const nounData = noun//{noun_word: noun}  //build noun object
+  const verbData = verb //{verb_word: verb}
+  quoteArray = quoteArray.template.content
+  
+  const verbFind = (quoteArray.match(new RegExp("VERB", 'g')))
+  const nounFind = (quoteArray.match(new RegExp("NOUN", 'g')))
+  const adjectiveFind = (quoteArray.match(new RegExp("ADJECTIVE", 'g')))
+
+  newQuote = quoteArray
+
+  newQuote = newQuote.replace(nounFind, nounData)
+  newQuote = newQuote.replace(adjectiveFind, adjData);
+  newQuote = newQuote.replace(verbFind, verbData);
+  console.log(newQuote)
+  
+  const newTemplate = `
+    <div class="centered"><h3>${newQuote}</h3></div>
+  </div>
+  `
+  document.querySelector('.centered').innerHTML += newTemplate
+
+}
+
+function postQuote(quoteID, newQuote, new_adj, new_noun, new_verb) {
+
+  let newContent = newQuote
+  fetch(`${quotesURL}/${quoteID}`, {
+    method: "PATCH",
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      adjective: new_adj,
+      noun: new_noun,
+      verb: new_verb
+    })
+  })
+    .then(response => response.json())
+    .then(updatedQuote => {
+      console.log(updatedQuote)
+      const indexPost = `
+        <div data-id=${quoteID}> 
+          <img src=${updatedQuote.template.image_url} height="350", width="100%">
+          <div class="bottom-centered"><h3>${updatedQuote.template.content}</h3></div>
+        </div>
+        `
+        document.querySelector(".index-container").innerHTML += indexPost
+    })
+}
+
 
