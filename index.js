@@ -7,9 +7,9 @@ let postBtn
 let randomTemplateId
 let quoteID
 let quoteArray
-let newAdj
-let newNoun
-let newVerb
+let adjData
+let nounData
+let verbData
 let newQuote
 
 //load form and random template 
@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 //post quote
     postBtn = document.querySelector("#post-button")
     postBtn.addEventListener("click", function() {
-      newAdj = adjData
-      newNoun = nounData
-      newVerb = verbData
+      let newAdj = adjData
+      let newNoun = nounData
+      let newVerb = verbData
         
       postQuote(quoteID, newQuote, newAdj, newNoun, newVerb)
       })
@@ -129,14 +129,8 @@ function postQuote(quoteID, newQuote, new_adj, new_noun, new_verb) {
   })
     .then(response => response.json())
     .then(updatedQuote => {
-      console.log(updatedQuote)
-      const indexPost = `
-        <div data-id=${quoteID}> 
-          <img src=${updatedQuote.template.image_url} height="350", width="100%">
-          <div class="bottom-centered"><h3>${updatedQuote.template.content}</h3></div>
-        </div>
-        `
-        document.querySelector(".index-container").innerHTML += indexPost
+      let newQuote = new Quote(updatedQuote)
+      document.querySelector('.index-container').innerHTML += newQuote.renderQuote()
     })
 }
 
