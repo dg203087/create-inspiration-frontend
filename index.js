@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchRandomTemplate()
     })
 
-//post quote
+//post quote button
     postBtn = document.querySelector("#post-button")
     postBtn.addEventListener("click", function() {
       let newAdj = adjData
@@ -37,6 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
       postQuote(quoteID, newQuote, newAdj, newNoun, newVerb)
       })
 })
+
+//renders all index quotes
+function renderIndex() {
+  fetch(quotesURL)
+  .then(response => response.json())
+  .then(quotes => {
+    debugger
+    quotes.forEach(quote => {
+      let oneQuote = new Quote(quote)
+      document.querySelector('.index-container').innerHTML += oneQuote.renderQuote()
+    })
+  })
+}
 
 // fetch random template
 function fetchRandomTemplate() {
