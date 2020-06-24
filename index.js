@@ -130,7 +130,7 @@ function postQuote(quoteID, newQuote, new_adj, new_noun, new_verb) {
     .then(response => response.json())
     .then(updatedQuote => {
       let newQuote = new Quote(updatedQuote)
-      document.querySelector('.index-container').innerHTML += newQuote.renderQuote()
+//       document.querySelector('.index-container').innerHTML += newQuote.renderQuote()
     })
 }
 
