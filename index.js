@@ -38,19 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
 })
 
-//renders all index quotes
-function renderIndex() {
-  fetch(quotesURL)
-  .then(response => response.json())
-  .then(quotes => {
-    debugger
-    quotes.forEach(quote => {
-      let oneQuote = new Quote(quote)
-      document.querySelector('.index-container').innerHTML += oneQuote.renderQuote()
-    })
-  })
-}
-
 // fetch random template
 function fetchRandomTemplate() {
   fetch(templatesURL)
